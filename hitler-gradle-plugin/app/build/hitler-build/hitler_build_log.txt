@@ -1,0 +1,17 @@
+[hitler-log]:reflectPredex preDexLibraries:false
+[hitler-log]:parser,......3
+[hitler-log]:log....com.lingyi.hitler.TestMethodInsert size:1
+[hitler-log]:log....com.lingyi.hitler.TestMethodInsert size:1
+[hitler-log]:log....com.lingyi.hitler.TargetMath size:1
+[hitler-log]:lingyilog:1
+[hitler-log]:variant:debug
+[hitler-log]:variant:release
+[hitler-log]:build end ------
+[hitler-log]::1ms :classes
+[hitler-log]::138ms :aarUploader
+[hitler-log]::6ms :compileJava
+[hitler-log]::12ms :jar
+[hitler-log]::1ms :assemble
+[hitler-log]::1378ms :compileGroovy
+[hitler-log]::4ms :processResources
+[hitler-log]::2ms :sourcesJar

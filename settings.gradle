@@ -1,0 +1,1 @@
+include ':app', ':hitler-processor-lib', ':hitler-annotation-lib' , ':hitler-gradle-plugin'
