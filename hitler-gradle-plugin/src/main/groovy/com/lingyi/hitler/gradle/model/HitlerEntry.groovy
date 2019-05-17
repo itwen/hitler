@@ -12,4 +12,5 @@ class HitlerEntry{
     String mBuildType
     String originMethod
     String targetMethod
+    String returnCode
 }

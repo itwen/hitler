@@ -10,7 +10,9 @@ import com.lingyi.annotation.protocol.VariantsType;
  */
 
 
-@Cmd(targetClass = "com.lingyi.hitler.TargetMath", funType = CmdType.REPLACE,buildType = VariantsType.TYPE_RELEASE)
+@Cmd(targetClass = "com.lingyi.hitler.TargetMath",
+        funType = CmdType.REPLACE,
+        buildType = VariantsType.TYPE_RELEASE)
 public class NewMath {
 
     public int c = 10;

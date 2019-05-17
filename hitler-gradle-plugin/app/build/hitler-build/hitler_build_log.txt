@@ -8,10 +8,10 @@
 [hitler-log]:variant:release
 [hitler-log]:build end ------
 [hitler-log]::1ms :classes
-[hitler-log]::138ms :aarUploader
-[hitler-log]::6ms :compileJava
-[hitler-log]::12ms :jar
-[hitler-log]::1ms :assemble
-[hitler-log]::1378ms :compileGroovy
+[hitler-log]::137ms :aarUploader
+[hitler-log]::4ms :compileJava
+[hitler-log]::14ms :jar
+[hitler-log]::0ms :assemble
+[hitler-log]::1422ms :compileGroovy
 [hitler-log]::4ms :processResources
 [hitler-log]::2ms :sourcesJar

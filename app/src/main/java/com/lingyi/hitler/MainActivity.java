@@ -16,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TargetMath targetMath = new TargetMath();
-                TestMethodInsert insert = new TestMethodInsert();
+                ((TextView)v).setText("8+2= "+targetMath.add(8,2));
+                TestMethodInsert insert = new TestMethodInsert(v);
                 insert.show();
                 insert.testTryCatch();
-                ((TextView)v).setText("8+2= "+targetMath.add(8,2));
+
             }
         });
     }

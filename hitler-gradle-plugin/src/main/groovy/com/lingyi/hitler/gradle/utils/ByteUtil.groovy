@@ -18,7 +18,7 @@ class ByteUtil{
         int end = start+len
         for(int i = start;i < end ; i++){
             int n = ((int)(b[i])) & 0xff
-            n <<= (--len) * 8 //第一个字节左移8位和第二个字节拼接成一个新的int类型的数字
+            n <<= (--len) * 8
             sum = n+sum
         }
         return sum

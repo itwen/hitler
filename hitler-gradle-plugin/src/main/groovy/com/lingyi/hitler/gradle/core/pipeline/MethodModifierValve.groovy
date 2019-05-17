@@ -6,6 +6,7 @@ import javassist.ClassPool
 import javassist.CtClass
 import javassist.CtMethod
 import javassist.CtNewMethod
+import sun.rmi.runtime.Log
 
 
 /**
@@ -33,7 +34,12 @@ class MethodModifierValve implements Valve{
         handling.valveName = name()
         if (handling != null && handling.classPath.endsWith(DOT_CLASS)){
             handling.context.mEntrySet.mEntryHashMap.each {String key,List<HitlerEntry> values->
-                if (handling.classPath.replace("/",".").contains(key)){
+                String className = handling.classPath
+                if (className.endsWith(DOT_CLASS)){
+                    className = className - DOT_CLASS
+                }
+                className = className.replace("/",".")
+                if (className.endsWith(key)){
                     CtClass ctClass =  null
                     try {
                         ctClass = classPool.get(key)
@@ -42,6 +48,7 @@ class MethodModifierValve implements Valve{
                         classPool.appendClassPath(handling.inputFile.absolutePath)
                         ctClass =  classPool.get(key)
                     }
+
                     values.each {HitlerEntry entry->
                         insert(entry,ctClass)
                     }

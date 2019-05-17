@@ -17,12 +17,18 @@ public class Test  {
 
 
 
-    @Cmd(funType = CmdType.INSERTHEAD,targetClass = "com.lingyi.hitler.TestMethodInsert",originClass = "com.lingyi.hitler.Test",targetMethod = "show")
+    @Cmd(funType = CmdType.INSERTHEAD,
+            targetClass = "com.lingyi.hitler.TestMethodInsert",
+            originClass = "com.lingyi.hitler.Test",
+            targetMethod = "show")
     public static void inserMethod(){
         Log.i("lingyilog", "inserMethod: 我是插入的方法");
     }
 
-    @Cmd(funType = CmdType.ADDTRYCATCH,targetClass = "com.lingyi.hitler.TestMethodInsert" ,originClass ="com.lingyi.hitler.Test",targetMethod = "testTryCatch")
+    @Cmd(funType = CmdType.ADDTRYCATCH,
+            targetClass = "com.lingyi.hitler.TestMethodInsert" ,
+            originClass ="com.lingyi.hitler.Test",
+            targetMethod = "testTryCatch")
     public static void tryCatch(Throwable  throwable){
         Log.i("lingyilog", "tryCatch: 发生了crash:"+throwable.getMessage());
     }

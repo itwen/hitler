@@ -71,7 +71,7 @@ apply plugin: 'com.kaola.aaruploader'
 
 aarUploader {
     artifactId = 'hitler-plugin'
-    version = '0.0.133-SNAPSHOT'
+    version = '0.0.136-SNAPSHOT'
 }
 
 /* publish {
