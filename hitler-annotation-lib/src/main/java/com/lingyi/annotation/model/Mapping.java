@@ -4,6 +4,7 @@ import com.lingyi.annotation.protocol.CmdType;
 import com.lingyi.annotation.protocol.VariantsType;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author sunchuanwen
@@ -21,9 +22,29 @@ public class Mapping  implements Serializable{
 
     public String originMethod;
 
-    public String targetMethod;
+    public int paramsCount = 0;
 
     public int mType;
+
+    public String methodSignature;
+
+    public String targetMethodName;
+
+    public String getTargetMethodName() {
+        return targetMethodName;
+    }
+
+    public void setTargetMethodName(String targetMethodName) {
+        this.targetMethodName = targetMethodName;
+    }
+
+    public String getMethodSignature() {
+        return methodSignature;
+    }
+
+    public void setMethodSignature(String methodSignature) {
+        this.methodSignature = methodSignature;
+    }
 
     public int getType() {
         return funType.getValue();
@@ -44,15 +65,25 @@ public class Mapping  implements Serializable{
     }
 
     public Mapping(CmdType funType, VariantsType variantsType, String targetClass, String originClass,
-            String originMethod, String targetMethod) {
+            String originMethod, String methodSignature,String targetMethodName,int paramsCount) {
         this.funType = funType;
         this.variantsType = variantsType;
         this.targetClass = targetClass;
         this.originClass = originClass;
         this.originMethod = originMethod;
-        this.targetMethod = targetMethod;
+        this.paramsCount = paramsCount;
+        this.methodSignature = methodSignature;
+        this.targetMethodName = targetMethodName;
         mType = funType.getValue();
         mBuildType = variantsType.getType();
+    }
+
+    public int getParamsCount() {
+        return paramsCount;
+    }
+
+    public void setParamsCount(int paramsCount) {
+        this.paramsCount = paramsCount;
     }
 
     public CmdType getFunType() {
@@ -95,11 +126,4 @@ public class Mapping  implements Serializable{
         this.originMethod = originMethod;
     }
 
-    public String getTargetMethod() {
-        return targetMethod;
-    }
-
-    public void setTargetMethod(String targetMethod) {
-        this.targetMethod = targetMethod;
-    }
 }

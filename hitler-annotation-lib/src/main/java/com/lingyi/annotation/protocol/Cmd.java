@@ -14,8 +14,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Cmd {
     String targetClass() default "";
-    String originClass() default "";
-    String targetMethod () default "";
+    String methodSignature() default "";
+    String targetMethodName() default "";
     CmdType funType();
     VariantsType buildType() default VariantsType.TYPE_DEFAULT;
 }

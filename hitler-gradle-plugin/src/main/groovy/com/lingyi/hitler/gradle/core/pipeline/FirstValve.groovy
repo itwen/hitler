@@ -63,7 +63,6 @@ class FirstValve implements Valve{
         Enumeration<JarEntry> jarEntrys = jf.entries()
 
         def buildTempFile = FilePathUtil.getHitlerBuildPath() + File.separator +handling.context.variant.name + File.separator + "jar"
-        LogUtils.instance.log("build_temple_file:"+buildTempFile)
         File outFile = new File(buildTempFile)
         if (!outFile.exists()){
             LogUtils.instance.log("file not exsit")

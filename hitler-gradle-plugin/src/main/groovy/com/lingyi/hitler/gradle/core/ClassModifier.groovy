@@ -36,7 +36,7 @@ class ClassModifier{
      * @param newStr 修改后的字符串
      * @return 修改后的字节码字节数组
      */
-    public static byte [] modifyUTF8Constant(byte [] classByte,String oldStr , String newStr){
+    public static byte [] modifyUTF8Constant(byte [] classByte,String oldStr , String newStr,String className){
         def constantCount = getContantPoolCount(classByte)
         def offset = CONSTANT_POLL_COUNT_INDEX + u2
         try {
@@ -48,7 +48,7 @@ class ClassModifier{
                     offset += (u1+u2)
                     String str = ByteUtil.byte2String(classByte,offset,len)
                     if(str.equalsIgnoreCase(oldStr)){
-                        LogUtils.instance.log("oldStr:"+oldStr+" newStr:"+newStr)
+                        LogUtils.instance.log("replaceClass[className:"+className+"] "+"oldStr:"+oldStr+" newStr:"+newStr)
                         byte [] strByte = ByteUtil.string2Byte(newStr)
                         byte [] strlen = ByteUtil.int2Bytes(newStr.length(),u2)
                         classByte = ByteUtil.bytesReplace(classByte,offset - u2,u2,strlen)
@@ -61,7 +61,7 @@ class ClassModifier{
                 }
             }
         }catch (Exception e){
-            LogUtils.instance.log("error:"+" constantCount:"+constantCount)
+            LogUtils.instance.log("replace error:"+" className:"+className)
         }
         return classByte
     }

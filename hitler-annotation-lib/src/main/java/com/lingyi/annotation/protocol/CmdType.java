@@ -7,9 +7,10 @@ package com.lingyi.annotation.protocol;
 public enum CmdType {
     INSERTHEAD(0),
     APPENDTAIL(1),
-    REPLACE(2),
+    CLASSREPLACE(2),
     ADDTRYCATCH(3),
-    STATEUNKONW(4);
+    METHODREPLACE(4),
+    STATEUNKONW(5);
 
     private int value;
 

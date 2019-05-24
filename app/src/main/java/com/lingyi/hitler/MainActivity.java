@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lingyi.hitler.test.TestMethodInsert;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
                 TargetMath targetMath = new TargetMath();
                 ((TextView)v).setText("8+2= "+targetMath.add(8,2));
                 TestMethodInsert insert = new TestMethodInsert(v);
-                insert.show();
+                insert.show(new String []{"sss","aaaa"});
                 insert.testTryCatch();
-
+                insert.replaceMethodReturn("replacereturn ",3);
+                insert.replaceMethod("replace ");
+                insert.testTryCatchReturn();
             }
         });
     }

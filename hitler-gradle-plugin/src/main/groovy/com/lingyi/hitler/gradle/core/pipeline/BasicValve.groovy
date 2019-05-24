@@ -23,7 +23,7 @@ class BasicValve implements Valve{
     @Override
     void invoke(Handling handling) {
         handling.valveName = name()
- /*       if (handling != null){
+        /*if (handling != null){
             if (handling.inputFile != null){
                 if (handling.inputFile.isFile()){
                     FileUtils.copyFile(handling.inputFile,handling.outFile)

@@ -44,7 +44,7 @@ public class HitlerPlugin implements Plugin<Project> {
 
         project.afterEvaluate {
             HitlerExtension extension = project.extensions.getByName("hitler")
-            HitlerEntrySet entrySet = ConfigParser.parser(project)
+            HitlerEntrySet entrySet = ConfigParser.parser(extension.configFilePath,project)
             project.android.applicationVariants.all{ ApplicationVariant variant->
                 LogUtils.instance.log("variant:"+variant.name)
                 process(project, variant, entrySet,extension)

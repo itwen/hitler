@@ -9,9 +9,10 @@ import com.lingyi.hitler.gradle.utils.LogUtils
 class HitlerEntrySet{
     public static final int INSERTOHEAD = 0x0
     public static final int APPENDTAIL = 0x01
-    public static final int CLASS = 0x02
+    public static final int CLASSREPLACE = 0x02
     public static final int ADDTRYCATCH = 0x03
-    public static final int UNKONW = 0x04
+    public static final int METHODREPLACE = 0x04
+    public static final int UNKONW = 0x05
 
 
     public List<HitlerEntry> entrySet
@@ -24,11 +25,10 @@ class HitlerEntrySet{
     public void setEntrySet(List<HitlerEntry> entries){
         this.entrySet = entries
         mEntryHashMap.clear()
-        LogUtils.instance.log("parser,......"+entrySet.size())
         if (entrySet != null){
             for (HitlerEntry entry:entrySet){
                 String key = entry.targetClass
-                if (entry.mType == CLASS){
+                if (entry.mType == CLASSREPLACE){
                     classReplaceList.add(entry)
                 }else{
                     if (!mEntryHashMap.containsKey(key)){

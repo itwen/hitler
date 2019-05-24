@@ -29,7 +29,7 @@ class ClassReplaceValve implements Valve{
             handling.context.mEntrySet.classReplaceList.each {HitlerEntry entry->
                 String originClass = handling.classPath.replace("/",".") - DOT_CLASS
                 if (needProcess(handling,entry) && handling.classPath.endsWith(DOT_CLASS) && !originClass.contains(entry.targetClass) && !originClass.contains(entry.originClass)){
-                    handling.bytes = ClassModifier.modifyUTF8Constant(handling.bytes,entry.targetClass.replace(".","/"),entry.originClass.replace(".","/"))
+                    handling.bytes = ClassModifier.modifyUTF8Constant(handling.bytes,entry.targetClass.replace(".","/"),entry.originClass.replace(".","/"),originClass)
                 }
             }
         }
@@ -42,12 +42,13 @@ class ClassReplaceValve implements Valve{
     }
 
     private boolean needProcess(Handling handling, HitlerEntry entry){
-        if (entry != null) return true
-
-        if (handling.context.mExtension.skip) return false
-        if ("default".equals(entry.mBuildType) || handling.context.variant.name.contains(entry.mBuildType))
+        boolean debugSkip = handling.context.mExtension.debugSkip
+        boolean releaseSkip = handling.context.mExtension.debugSkip
+        String variantName = handling.context.variant.name
+        if (debugSkip && variantName.contains("debug"))return false
+        if (releaseSkip && variantName.contains("release"))return false
+        if ("default".equals(entry.mBuildType) || variantName.contains(entry.mBuildType))
             return true
-
         return false
      }
 }

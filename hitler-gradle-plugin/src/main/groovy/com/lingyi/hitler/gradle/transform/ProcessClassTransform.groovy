@@ -9,7 +9,6 @@ import com.lingyi.hitler.gradle.core.pipeline.ClassReplaceValve
 import com.lingyi.hitler.gradle.core.pipeline.FirstValve
 import com.lingyi.hitler.gradle.core.pipeline.Handling
 import com.lingyi.hitler.gradle.core.pipeline.MethodModifierValve
-import com.lingyi.hitler.gradle.utils.LogUtils
 
 
 /**
@@ -48,7 +47,6 @@ class ProcessClassTransform extends TransformProxy{
         ArrayList<Handling> list = new ArrayList<>()
         transformInvocation.inputs.each {TransformInput transformInput->
             transformInput.jarInputs.each {JarInput jarInput->
-                LogUtils.instance.log("jar name："+jarInput.file.getAbsoluteFile().name)
                 def jarName = jarInput.name
                 if (jarName.endsWith(DOT_JAR)){
                     jarName = jarName.substring(0,jarName - DOT_JAR.length())

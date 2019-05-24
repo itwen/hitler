@@ -10,7 +10,11 @@ import com.lingyi.annotation.protocol.VariantsType;
  */
 public class MappingBuilder {
 
-    public static Mapping build(CmdType funType,VariantsType buildType,String originClass,String targetClass,String originMethod,String targetMethod){
-        return new Mapping(funType,buildType,targetClass,originClass,originMethod,targetMethod);
+    public static Mapping build(CmdType funType,VariantsType buildType,String originClass,String targetClass,String originMethod,String signature,String targetMethodName,int paramsCount){
+        return new Mapping(funType,buildType,targetClass,originClass,originMethod,signature,targetMethodName,paramsCount);
+    }
+
+    public static Mapping build(CmdType funType,VariantsType buildType,String originClass,String targetClass){
+        return new Mapping(funType,buildType,targetClass,originClass,"","","",0);
     }
 }

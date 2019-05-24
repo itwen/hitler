@@ -11,7 +11,7 @@ import com.lingyi.annotation.protocol.VariantsType;
 
 
 @Cmd(targetClass = "com.lingyi.hitler.TargetMath",
-        funType = CmdType.REPLACE,
+        funType = CmdType.CLASSREPLACE,
         buildType = VariantsType.TYPE_RELEASE)
 public class NewMath {
 

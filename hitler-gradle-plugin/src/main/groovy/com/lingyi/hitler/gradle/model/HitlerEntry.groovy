@@ -11,6 +11,7 @@ class HitlerEntry{
     int mType
     String mBuildType
     String originMethod
-    String targetMethod
-    String returnCode
+    String methodSignature
+    String targetMethodName
+    int paramsCount
 }

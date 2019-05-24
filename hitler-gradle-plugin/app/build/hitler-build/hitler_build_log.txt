@@ -1,17 +1,18 @@
 [hitler-log]:reflectPredex preDexLibraries:false
-[hitler-log]:parser,......3
-[hitler-log]:log....com.lingyi.hitler.TestMethodInsert size:1
-[hitler-log]:log....com.lingyi.hitler.TestMethodInsert size:1
+[hitler-log]:log....com.lingyi.hitler.test.* size:1
+[hitler-log]:log....com.lingyi.hitler.test.* size:1
 [hitler-log]:log....com.lingyi.hitler.TargetMath size:1
 [hitler-log]:lingyilog:1
 [hitler-log]:variant:debug
+[hitler-log]:build path:/home/sunchuanwen/kaola_project/Hitler/app/build
 [hitler-log]:variant:release
+[hitler-log]:build path:/home/sunchuanwen/kaola_project/Hitler/app/build
 [hitler-log]:build end ------
-[hitler-log]::1ms :classes
-[hitler-log]::137ms :aarUploader
+[hitler-log]::0ms :classes
+[hitler-log]::130ms :aarUploader
 [hitler-log]::4ms :compileJava
-[hitler-log]::14ms :jar
+[hitler-log]::10ms :jar
 [hitler-log]::0ms :assemble
-[hitler-log]::1422ms :compileGroovy
-[hitler-log]::4ms :processResources
+[hitler-log]::1432ms :compileGroovy
+[hitler-log]::2ms :processResources
 [hitler-log]::2ms :sourcesJar

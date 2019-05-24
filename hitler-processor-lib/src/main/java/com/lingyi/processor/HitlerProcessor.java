@@ -18,8 +18,11 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.TypeParameterElement;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
@@ -54,7 +57,6 @@ public class HitlerProcessor extends AbstractProcessor {
     }
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        System.out.println("process---------");
         Set<? extends Element> routeElements = roundEnvironment.getElementsAnnotatedWith(Cmd.class);
         if (routeElements == null || routeElements.size() == 0){
             return false;
@@ -65,20 +67,28 @@ public class HitlerProcessor extends AbstractProcessor {
             boolean isPublic = false;
             boolean isStatic = false;
 
+            String packageName = "";
+            String className = "";
             switch (element.getKind()){
                 case ENUM:
                 case CLASS:
                 case INTERFACE:
                 case ANNOTATION_TYPE:
-                    String className = element.getSimpleName().toString();
-                    String packName = elementUtil.getPackageOf(element).getQualifiedName().toString();
-                    MappingProvider.addMapping(MappingBuilder.build(cmd.funType(),cmd.buildType(),packName+"."+className,cmd.targetClass(),"",""));
+                    className = element.getSimpleName().toString();
+                    packageName = elementUtil.getPackageOf(element).getQualifiedName().toString();
+                    MappingProvider.addMapping(MappingBuilder.build(cmd.funType(),cmd.buildType(),packageName+"."+className,cmd.targetClass()));
                     break;
 
                 case METHOD:
-                    Set<Modifier> modifiers = element.getModifiers();
+                    ExecutableElement executeElement = (ExecutableElement) element;
+                    packageName = elementUtil.getPackageOf(element.getEnclosingElement()).getQualifiedName().toString();
+                    className = element.getEnclosingElement().getSimpleName().toString();
+                    int paramsCount = executeElement.getParameters() == null?0:executeElement.getParameters().size() ;
 
-                    System.out.println("process method");
+                    for (VariableElement params : executeElement.getParameters()){
+                        System.out.println("params:"+params.asType().toString());
+                    }
+                    Set<Modifier> modifiers = element.getModifiers();
                     if (modifiers != null && modifiers.size() > 0){
                         for (Modifier modifier : modifiers){
                             if (modifier == Modifier.PUBLIC){
@@ -91,16 +101,13 @@ public class HitlerProcessor extends AbstractProcessor {
                         }
                     }
 
-                    System.out.println("ispublic:"+isPublic);
-                    System.out.println("isStatic:"+isStatic);
-
                     if (cmd.funType() == CmdType.ADDTRYCATCH){
                         isPublic = isStatic  = true;
                     }
                     if (!isPublic || !isStatic ){
                         continue;
                     }
-                    MappingProvider.addMapping(MappingBuilder.build(cmd.funType(),cmd.buildType(),cmd.originClass(),cmd.targetClass(),element.getSimpleName().toString(),cmd.targetMethod()));
+                    MappingProvider.addMapping(MappingBuilder.build(cmd.funType(),cmd.buildType(),packageName+"."+className,cmd.targetClass(),element.getSimpleName().toString(),cmd.methodSignature(),cmd.targetMethodName(),paramsCount));
                     break;
             }
 

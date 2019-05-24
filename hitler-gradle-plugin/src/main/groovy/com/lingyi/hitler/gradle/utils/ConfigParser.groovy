@@ -11,10 +11,13 @@ import com.lingyi.hitler.gradle.model.HitlerEntrySet
 class ConfigParser{
     public static final def sDefualtFile = "hitler_mapping.json"
 
-    public static HitlerEntrySet parser(Project project) {
+    public static HitlerEntrySet parser(String configPath,Project project) {
         try {
-            def configPath = project.rootDir.absolutePath + File.separator + sDefualtFile
-            File file = new File(configPath)
+            if (configPath == null || configPath.length() <= 0){
+                configPath = sDefualtFile
+            }
+
+            File file = new File( project.rootDir.absolutePath + File.separator+configPath)
             String json = openFileToString(file)
             Gson gson = new Gson()
             HitlerEntrySet config = gson.fromJson(json, HitlerEntrySet.class)
